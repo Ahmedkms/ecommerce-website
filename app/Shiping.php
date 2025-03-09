@@ -10,8 +10,8 @@ class Shiping{
     public function __construct(){
         $this->db=DatabaseManager::getConnection();
     }
-    public function CreateShiping($user_id,$order_id,$address,$city,$country,$status='panding'){
-        $sql="INSERT INTO `shippings`(`user_id`, `order_id`, `address`, `city`, `country`, `status`) VALUES(:user_id,:order_id,:address,:city,:country,:status)"; 
+    public function CreateShiping($user_id,$order_id,$address,$city,$country,$phone,$note,$status='panding'){
+        $sql="INSERT INTO `shippings`(`user_id`, `order_id`, `address`, `city`, `country`, `status`,`phone`,`note`) VALUES(:user_id,:order_id,:address,:city,:country,:status,:phone,:note)"; 
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([
             
@@ -20,6 +20,8 @@ class Shiping{
            ':address'=> $address, 
            ':city'=> $city, 
            ':country'=> $country, 
+           ':phone'=> $phone, 
+           ':note'=> $note, 
            ':status'=> $status]);
     }
 
@@ -45,7 +47,6 @@ class Shiping{
 
 
 }
-
 
 
 

@@ -78,10 +78,20 @@ switch ($page) {
         require_once "../controllers/admin/addProductController.php";
         break;
 
-        case "deleteCategoryController":
-            require_once "../controllers/admin/deleteCategoryController.php";
-            break;
+    case "deleteCategoryController":
+        require_once "../controllers/admin/deleteCategoryController.php";
+        break;
+    case "RemoveFromCarControllert":
+        require_once "../controllers/Cart/RemoveFromCartController.php";
+        break;
+    case "log_out":
+        require_once "../controllers/logoutController.php";
+        break;
+    case "checkoutcontroller":
+        require_once "../controllers/CheckoutController.php";
+        break;
 
 
-      
+
+
 }
