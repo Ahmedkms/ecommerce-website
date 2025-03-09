@@ -30,7 +30,15 @@ class Slider{
 
 
     public function getAllSlider() {
-        $query = "SELECT * FROM sliders ";
+        $query = "SELECT 
+        s.*,
+        p.name AS product_name, 
+        p.price AS product_price, 
+        p.image AS product_image, 
+        p.description AS product_description
+      FROM sliders AS s
+      INNER JOIN products AS p ON s.product_id = p.id 
+      ORDER BY s.id DESC";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

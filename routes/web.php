@@ -78,7 +78,6 @@ switch ($page) {
     case "add-product":
         require_once "../controllers/admin/addProductController.php";
         break;
-
     case "deleteCategoryController":
         require_once "../controllers/admin/deleteCategoryController.php";
         break;
@@ -99,6 +98,10 @@ switch ($page) {
         break;
     case "addcomment":
         require_once "../controllers/AddComment.php";
+        break;
+
+    case "addcontactus":
+        require_once "../controllers/contactController.php";
         break;
     case "searchProductController":
         require_once "../controllers/searchproductcontroller.php";
