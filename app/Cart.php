@@ -70,8 +70,7 @@ class Cart {
     
         $totalPrice = array_sum(array_column($cartItems, 'item_total_price'));
     
-        return $totalPrice;  // Return the total price along with items
-        
+        return $totalPrice;  
     }
     
 
@@ -91,7 +90,7 @@ class Cart {
 
     // clear Cart in case of complete order for one user
     public function clearCart($user_id) {
-        $sql = "DELETE FROM cart WHERE user_id = ?";
+        $sql = "DELETE FROM carts WHERE user_id = ?";
         $stmt = $this->db->prepare($sql);
         return $stmt->execute([$user_id]);
     }

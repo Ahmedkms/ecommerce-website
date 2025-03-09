@@ -20,12 +20,21 @@ class Comment{
            ':blog_id'=> $blog_id, 
            ':content'=> $content]);
     }
-    public function GetCommentsByBlog($blog_id){
-        $sql="SELECT * FROM `comments`where blog_id=:blog_id ORDER BY created_at DESC";
-        $stmt=$this->db->prepare($sql);
-        $stmt->execute(['blog_id'=>$blog_id]);
+    public function getCommentsByBlogId(int $blog_id): array {
+        $sql = "
+            SELECT comments.content, comments.id, users.name 
+            FROM comments
+            INNER JOIN users ON comments.user_id = users.id
+            WHERE comments.blog_id = :blog_id
+            ORDER BY comments.id DESC
+        ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['blog_id' => $blog_id]);
+        
+        // Fetch all results as an associative array
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-     }
+    }
+    
      public function DeleteComment($comment_id){
         $sql = "DELETE FROM comments WHERE id = ?";
         $stmt = $this->db->prepare($sql);

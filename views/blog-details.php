@@ -1,4 +1,16 @@
+<?php
+use App\Blogs;
+use App\Tags;
+use App\Comment;
+$blog=new Blogs();
+$B=$blog->GetBlogById($_GET['id']);
+$tag=new Tags();
+$tags=$tag->GetTagsByProduct($B['product_id']);
+$com=new Comment();
+$comments=$com->getCommentsByBlogId($B['id'])
 
+
+?>
 
     <!--breadcrumbs area start-->
     <div class="breadcrumbs_area">
@@ -29,30 +41,25 @@
                         <article class="single_blog">
                             <figure>
                                <div class="post_header">
-                                   <h3 class="post_title">Best drone experience ever</h3>
+                                   <h3 class="post_title"><?= $B['title']?></h3>
                                     <div class="blog_meta">                                        
                                         <span class="author">Posted by : <a href="#">Rahul</a> / </span>
-                                        <span class="post_date"><a href="#">Sep 20, 2019</a></span>
+                                        <span class="post_date"><a href="#"><?= $B['created_at']?></a></span>
                                     </div>
                                 </div>
                                 <div class="blog_thumb">
-                                   <a href="#"><img src="assets/img/blog/blog-details.jpg" alt=""></a>
+                                   <a href="#"><img src="<?= $B['img']?>" alt=""></a>
                                </div>
                                <figcaption class="blog_content">
                                     <div class="post_content">
-                                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem</p>
-                                        <blockquote>
-                                            <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur. In venenatis elit ac ultrices convallis. Duis est nisi, tincidunt ac urna sed, cursus blandit lectus. In ullamcorper sit amet ligula ut eleifend. Proin dictum tempor ligula, ac feugiat metus. Sed finibus tortor eu scelerisque scelerisque.</p>
-                                        </blockquote>
-                                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary</p>
-                                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum</p>
+                                        <p><?= $B['description']?></p>
                                     </div>
                                     <div class="entry_content">
                                         <div class="post_meta">
                                             <span>Tags: </span>
-                                            <span><a href="#">Drone, </a></span>
-                                            <span><a href="#">Sky, </a></span>
-                                            <span><a href="#">Fly</a></span>
+                                            <?php foreach($tags as $tag) ?>
+                                            <span><a href="#">  <?=$tag['name']?>, </a></span>
+                                           
                                         </div>
 
                                         <div class="social_sharing">
@@ -70,81 +77,55 @@
                             </figure>
                         </article>
                         <div class="comments_box">
-                            <h3>3 Comments	</h3>
+                            <h3><?= count($comments)?> Comments	</h3>
+                            <?php  foreach($comments as $comment):?>
                             <div class="comment_list">
                                 <div class="comment_thumb">
                                     <img src="assets/img/blog/comment3.png.jpg" alt="">
                                 </div>
                                 <div class="comment_content">
                                     <div class="comment_meta">
-                                        <h5><a href="#">Admin</a></h5>
+                                        <h5><a href="#"> <?= $comment['name'] ?></a></h5>
                                         <span>October 16, 2018 at 1:38 am</span> 
                                     </div>
-                                    <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
+                                    <p><?= $comment['content'] ?></p>
                                     <div class="comment_reply">
                                         <a href="#">Reply</a>
                                     </div>
                                 </div>
 
                             </div>
-                            <div class="comment_list list_two">
-                                <div class="comment_thumb">
-                                    <img src="assets/img/blog/comment3.png.jpg" alt="">
-                                </div>
-                                <div class="comment_content">
-                                    <div class="comment_meta">
-                                        <h5><a href="#">Demo</a></h5>
-                                        <span>October 16, 2018 at 1:38 am</span> 
-                                    </div>
-                                    <p>Quisque semper nunc vitae erat pellentesque, ac placerat arcu consectetur</p>
-                                    <div class="comment_reply">
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment_list">
-                                <div class="comment_thumb">
-                                    <img src="assets/img/blog/comment3.png.jpg" alt="">
-                                </div>
-                                <div class="comment_content">
-                                    <div class="comment_meta">
-                                        <h5><a href="#">Admin</a></h5>
-                                        <span>October 16, 2018 at 1:38 am</span> 
-                                    </div>
-                                    <p>Quisque orci nibh, porta vitae sagittis sit amet, vehicula vel mauris. Aenean at</p>
-                                    <div class="comment_reply">
-                                        <a href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php endforeach ?>
+                           
+                            
                         <div class="comments_form">
                             <h3>Leave a Reply </h3>
                             <p>Your email address will not be published. Required fields are marked *</p>
-                            <form action="#">
+                            <form action="../public/index.php?page=addcomment" method="post">
                                 <div class="row">
+                                    <?php
+                                    require_once "../healper/healper.php";
+                                    errorMessage(); ?>
                                     <div class="col-12">
                                         <label for="review_comment">Comment </label>
                                         <textarea name="comment" id="review_comment" ></textarea>
                                     </div> 
                                     <div class="col-lg-4 col-md-4">
                                         <label for="author">Name</label>
-                                        <input id="author"  type="text">
+                                        <input id="author" name="name" type="text">
 
                                     </div> 
                                     <div class="col-lg-4 col-md-4">
                                         <label for="email">Email </label>
-                                        <input id="email"  type="text">
-                                    </div>
-                                    <div class="col-lg-4 col-md-4">
-                                        <label for="website">Website </label>
-                                        <input id="website"  type="text">
-                                    </div>   
+                                        <input id="email" name="email" type="text">
+                                    </div>  
+                                    <input type="hidden" name="blog_id" value="<?=$_GET['id']?>">
                                 </div>
                                 <button class="button" type="submit">Post Comment</button>
                              </form>    
                         </div>
                          
+                    </div>
                     </div>
                     <!--blog grid area start-->
                 </div>

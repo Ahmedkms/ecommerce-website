@@ -36,13 +36,13 @@
                                             <div class="col-lg-6">
                                                 <div class="single-acc-field">
                                                     <label for="name">Name</label>
-                                                    <input type="text" placeholder="Name" id="name">
+                                                    <input type="text" name="name" placeholder="Name" id="name">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6">
                                                 <div class="single-acc-field">
                                                     <label for="email">Email</label>
-                                                    <input type="email" placeholder="Email" id="email">
+                                                    <input type="email" name="email" placeholder="Email" id="email">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">

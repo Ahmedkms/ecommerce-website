@@ -45,7 +45,17 @@ class User{
             die("error: " . $e->getMessage());
         }
     }
+    public function getuser($email){
 
+      
+            $sql="SELECT * FROM `users` WHERE `email`=:email";
+            $p=$this->db->prepare($sql);
+            $p->execute([':email'=>$email]);
+            $res = $p->fetch(PDO::FETCH_ASSOC);  
+           return $res;
+       
+
+    }
 
     public function log_in($email,$password){
 

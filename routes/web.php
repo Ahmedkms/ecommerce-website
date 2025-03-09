@@ -90,8 +90,11 @@ switch ($page) {
     case "checkoutcontroller":
         require_once "../controllers/CheckoutController.php";
         break;
+        case "addcomment":
+            require_once "../controllers/AddComment.php";
+            break;
 
 
-
+        
 
 }
