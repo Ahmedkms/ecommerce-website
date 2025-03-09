@@ -21,7 +21,13 @@ class Replies{
            ':content'=> $content]);
     }
     public function GetRepliesByComment($comment_id){
-        $sql="SELECT * FROM `replies`where comment_id=:comment_id ORDER BY created_at DESC";
+        $sql = "SELECT 
+                r.*, 
+                u.name AS username  
+            FROM replies AS r
+            INNER JOIN users AS u ON r.user_id = u.id  
+            WHERE r.comment_id = :comment_id
+            ORDER BY r.created_at DESC";
         $stmt=$this->db->prepare($sql);
         $stmt->execute(['comment_id'=>$comment_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

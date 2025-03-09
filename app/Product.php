@@ -53,11 +53,18 @@ class Product {
         }
         return $stmt->execute($params);
     }
+    public function getLastThreeProducts() {
+        $sql = "SELECT * FROM products ORDER BY created_at DESC LIMIT 3";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function searchProductsByName($word) {
         $sql = "SELECT * FROM products WHERE name LIKE ?";
         $stmt = $this->db->prepare($sql);
         $stmt->execute(['%' . $word . '%']);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
 

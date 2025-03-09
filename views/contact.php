@@ -31,8 +31,10 @@
                             </div>
                             <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                                 <div class="account-content">
-                                    <form action="#">
+                                    <form action="../public/index.php?page=addcontactus" method="post">
                                         <div class="row">
+                                            <?php require_once "../healper/healper.php";
+                                            errorMessage(); ?>
                                             <div class="col-lg-6">
                                                 <div class="single-acc-field">
                                                     <label for="name">Name</label>

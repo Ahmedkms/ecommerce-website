@@ -221,9 +221,9 @@
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
                                 <div class="search_container">
-                                    <form action="#">
+                                <form action="../public/index.php?page=searchProductController" method="post">
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text">
+                                            <input name="word" placeholder="Search product..." type="text">
                                             <button type="submit">Search</button>
                                         </div>
                                     </form>

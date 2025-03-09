@@ -2,6 +2,7 @@
 require_once "../vendor/autoload.php";
 $page = isset($_GET['page']) ? $_GET['page'] : "home";
 
+
 switch ($page) {
     case "home":
         require_once "../views/index.php";
@@ -77,12 +78,17 @@ switch ($page) {
     case "add-product":
         require_once "../controllers/admin/addProductController.php";
         break;
-
     case "deleteCategoryController":
         require_once "../controllers/admin/deleteCategoryController.php";
         break;
     case "RemoveFromCarControllert":
         require_once "../controllers/Cart/RemoveFromCartController.php";
+        break;
+    case "AddToCarController":
+        require_once "../controllers/Cart/AddToCartController.php";
+        break;
+    case "UpdateCartController":
+        require_once "../controllers/Cart/UpdateCartController.php";
         break;
     case "log_out":
         require_once "../controllers/logoutController.php";
@@ -90,11 +96,22 @@ switch ($page) {
     case "checkoutcontroller":
         require_once "../controllers/CheckoutController.php";
         break;
-        case "addcomment":
-            require_once "../controllers/AddComment.php";
-            break;
+    case "addcomment":
+        require_once "../controllers/AddComment.php";
+        break;
+
+    case "addcontactus":
+        require_once "../controllers/contactController.php";
+        break;
+    case "searchProductController":
+        require_once "../controllers/searchproductcontroller.php";
+        break;
+    case "searchblogsController":
+        require_once "../controllers/searchblogcontroller.php";
+        break;
 
 
-        
+
+
 
 }
