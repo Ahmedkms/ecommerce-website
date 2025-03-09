@@ -35,18 +35,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $validate->validateString('description', $description);
 
     // validate uploaded file 
+    if(!isset($_POST['id'])){
     $validate->validateFile('image', $file);
-
+    }
     $errors = $validate->getErrors();
     if(!empty($errors)){
         $_SESSION['errors']=$errors;
         header("location: " . $_SERVER['HTTP_REFERER']);
         exit;
-    }else{
-        $image= $product->uploadFile($file, "../public/assets/uploads/");
+    }if (!isset($_POST['id'])) {
+        $image = $product->uploadFile($file, "../public/assets/uploads/");
         $product->addProduct($name, $description, $price, $stock, $category, $image);
-       $_SESSION['success'] = "product added successfully";
-       header("location: ../admin/index.php");
-       exit;
+        $_SESSION['success'] = "Product added successfully";
+    } else {
+        $productId = $_POST['id'];
+        if (!empty($_FILES['image']['name'])) {
+            $image = $product->uploadFile($file, "../public/assets/uploads/");
+        } else {
+            $oldProduct = $product->getProductById($productId);
+            $image = $oldProduct['image'];
+        }
+    
+        $product->updateProduct($productId, $name, $description, $price, $stock, $category, $image);
+        $_SESSION['success'] = "Product updated successfully";
     }
+    
+    header("Location: ../admin/index.php");
+    exit;
+    
 }

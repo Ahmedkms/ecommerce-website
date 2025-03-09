@@ -26,6 +26,13 @@ use Database\DatabaseManager;
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
  }
+ public function GetCategoryById($id) {
+   $sql = "SELECT * FROM categorys WHERE id = :id";
+   $stmt = $this->db->prepare($sql);
+   $stmt->execute([':id' => $id]);
+   return $stmt->fetch(PDO::FETCH_ASSOC); // Fetch a single category
+}
+
  public function DeleteCategory($id) {
     $sql = "DELETE FROM categorys WHERE id = ?";
     $stmt = $this->db->prepare($sql);
