@@ -25,7 +25,12 @@ class Product {
             ":image" => $image
         ]);
     }
-
+    public function getRecentProducts() {
+        $query = "SELECT * FROM products WHERE created_at >= NOW() - INTERVAL 3 DAY ORDER BY created_at DESC";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // update product data
     public function updateProduct($id, $name, $description, $price, $stock, $category_id, $image=null) {
         $query = "UPDATE products SET name = :name, description = :description, price = :price, stock = :stock, category_id = :category_id";

@@ -5,10 +5,7 @@ use App\Category;
 $product = new Product();
 $products = $product->getAllProducts();
 $category = new Category();
-
-
 ?>
-
 <div class="content-wrapper">
     <div class="container-fluid mt-5">
         <div class="card shadow p-4">
@@ -73,6 +70,5 @@ $category = new Category();
     </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

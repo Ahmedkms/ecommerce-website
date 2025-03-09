@@ -2,6 +2,8 @@
 include "includes/nav.php";
 include "includes/sidebar.php";
 use App\Category;
+use App\Product;
+$product = new Product();
 $category = new Category();
 $categories = $category->GetAllCategory();
 ?>
@@ -71,6 +73,9 @@ $categories = $category->GetAllCategory();
         </div>
         
         <!-- Latest Products Table -->
+         <?php 
+         $products = $product->getRecentProducts();
+         ?>
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Latest Products</h3>
@@ -85,16 +90,13 @@ $categories = $category->GetAllCategory();
                 </tr>
               </thead>
               <tbody>
+              <?php foreach($products as $product): ?> 
                 <tr>
-                  <td>Product 1</td>
-                  <td>$10</td>
-                  <td>2025-03-08</td>
+                  <td><?= $product['name']?></td>
+                  <td><?= $product['price']?></td>
+                  <td><?= $product['created_at'] ?></td>
                 </tr>
-                <tr>
-                  <td>Product 2</td>
-                  <td>$15</td>
-                  <td>2025-03-08</td>
-                </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

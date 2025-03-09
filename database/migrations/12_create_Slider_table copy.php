@@ -1,7 +1,4 @@
 <?php 
-
-
-
 class CreateSliderTable{
     public function up($conn)
     {

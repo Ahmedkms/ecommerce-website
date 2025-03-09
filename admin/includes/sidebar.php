@@ -20,7 +20,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="add-category.php" class="nav-link">
+            <a href="All-orders.php" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>orders</p>
             </a>
@@ -32,15 +32,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="add-category.php" class="nav-link">
+            <a href="users.php" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
-              <p>low stock products</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="add-category.php" class="nav-link">
-              <i class="nav-icon fas fa-box"></i>
-              <p>low stock products</p>
+              <p>Manage users</p>
             </a>
           </li>
         </ul>
