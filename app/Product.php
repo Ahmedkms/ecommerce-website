@@ -48,6 +48,13 @@ class Product {
         }
         return $stmt->execute($params);
     }
+    public function searchProductsByName($word) {
+        $sql = "SELECT * FROM products WHERE name LIKE ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['%' . $word . '%']);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
 
     // delete product  
     public function deleteProduct($id) {

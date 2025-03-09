@@ -19,6 +19,13 @@ class Order {
             ':total_price' => $total_price,
             ':status' => $status]);
     }
+    public function getLastOrderByUser($user_id) {
+        $sql = "SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC LIMIT 1";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$user_id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);  // Use fetch() instead of fetchAll() to get a single record
+    }
+    
 
     //return order details using order id
     public function getOrderById($order_id) {

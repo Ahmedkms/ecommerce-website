@@ -1,3 +1,4 @@
+<?php require_once "../vendor/autoload.php";?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -195,6 +196,7 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-right">
                                 <ul><?php if (!empty($_SESSION['username'])): ?>
+                                    <li><a href="../public/index.php?page=log_out"> Log out </a></li>
                                     <li><a href="../public/index.php?page=my-account"> My Account </a></li>
                                 <?php endif ?>
 
@@ -226,6 +228,11 @@
                                         </div>
                                     </form>
                                 </div>
+                                <?php  
+                                 use App\Cart;
+                                $c=new Cart();
+                                $num=$c->getNumberofbroductinCart(isset($_SESSION['id'])?$_SESSION['id']:null);
+                                $products=$c->getCartItems(isset($_SESSION['id'])?$_SESSION['id']:null); ?>
                                 <div class="middel_right_info">
                                     <div class="header_wishlist">
                                         <a href="#"><img src="../public/assets/img/user.png" alt=""></a>
@@ -233,43 +240,36 @@
                                     <div class="mini_cart_wrapper">
                                         <a href="javascript:void(0)"><img src="../public/assets/img/shopping-bag.png"
                                                 alt=""></a>
-                                        <span class="cart_quantity">2</span>
+                                        <span class="cart_quantity"><?= !empty($num) ? $num : 0 ?></span>
                                         <!--mini cart-->
                                         <div class="mini_cart">
+                                            <?php 
+                                             $total=0;
+                                            foreach($products as $product):
+                                                 $total+=$product['QTY']*$product['product_price'];?>
                                             <div class="cart_item">
                                                 <div class="cart_img">
-                                                    <a href="#"><img src="../public/assets/img/s-product/product.jpg"
+                                                    <a href="#"><img src="<?= $product['product_image']?>"
                                                             alt=""></a>
                                                 </div>
                                                 <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
+                                                    <a href="#"><?= $product['product_name']?>s</a>
+                                                    <p>Qty: <?= $product['QTY']?>X <span> <?= $product['product_price']?> </span></p>
                                                 </div>
                                                 <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                    <a href="../public/index.php?page=RemoveFromCarControllert&cart_id=<?=$product['cart_id']?>"><i class="ion-android-close"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="../public/assets/img/s-product/product2.jpg"
-                                                            alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
+                                            <?php endforeach;?>
+                                           
                                             <div class="mini_cart_table">
                                                 <div class="cart_total">
                                                     <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
+                                                    <span class="price"><?=$total?></span>
                                                 </div>
-                                                <div class="cart_total mt-10">
+                                                <div class="cart_total mt-10">  
                                                     <span>total:</span>
-                                                    <span class="price">$138.00</span>
+                                                    <span class="price"><?=$total+5?></span>
                                                 </div>
                                             </div>
 
@@ -328,8 +328,12 @@
                                                 <li><a href="../public/index.php?page=blog-details">blog details</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="../public/index.php?page=contact"> Contact Us</a></li>
-                                    </ul>
+                                        <?php if(isset($_SESSION['username'])) :?>
+
+                                        <li>
+                                            <a href="../public/index.php?page=contact"> Contact Us</a></li>
+                                        <?php  endif;     ?>    
+                                        </ul>
                                 </nav>
                             </div>
                         </div>

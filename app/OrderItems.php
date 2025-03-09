@@ -1,9 +1,11 @@
 <?php
+namespace App;
+use PDO;
 use Database\DatabaseManager;
-class OrderItem {
+class OrderItems {
     private $db;
 
-    public function __construct($pdo) {
+    public function __construct() {
         $this->db = DatabaseManager::getConnection();
     }
 
