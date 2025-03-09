@@ -2,12 +2,20 @@
 use App\Blogs;
 use App\Tags;
 use App\Comment;
+use App\Replies;
+if(isset($_GET['id'])){
+    $blog_id=$_GET['id'];
+
+}else{
+    $blog_id=1;
+}
 $blog=new Blogs();
-$B=$blog->GetBlogById($_GET['id']);
+$B=$blog->GetBlogById($blog_id);
 $tag=new Tags();
 $tags=$tag->GetTagsByProduct($B['product_id']);
 $com=new Comment();
-$comments=$com->getCommentsByBlogId($B['id'])
+$comments=$com->getCommentsByBlogId($B['id']);
+$replay=new Replies();
 
 
 ?>
@@ -95,6 +103,36 @@ $comments=$com->getCommentsByBlogId($B['id'])
                                 </div>
 
                             </div>
+                            <?php  $replaies=$replay->GetRepliesByComment($comment['id']); ?>
+                            <?php  if(!empty($replaies)):
+                                foreach($replaies as $replay ):
+                                ?>
+                                <div class="comment_list list_two">
+                                <div class="comment_thumb">
+                                    <img src="assets/img/blog/comment3.png.jpg" alt="">
+                                </div>
+                                <div class="comment_content">
+                                    <div class="comment_meta">
+                                        <h5><a href="#"><?= $replay['username']?></a></h5>
+                                        <span><?= $replay['created_at']?></span> 
+                                    </div>
+                                    <p><?= $replay['content']?></p>
+                                    <div class="comment_reply">
+                                        <a href="#">Reply</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+                                    <?php endforeach; ?>
+
+                                <?php  endif; ?>
+
                             <?php endforeach ?>
                            
                             
@@ -119,7 +157,7 @@ $comments=$com->getCommentsByBlogId($B['id'])
                                         <label for="email">Email </label>
                                         <input id="email" name="email" type="text">
                                     </div>  
-                                    <input type="hidden" name="blog_id" value="<?=$_GET['id']?>">
+                                    <input type="hidden" name="blog_id" value="<?=$blog_id?>">
                                 </div>
                                 <button class="button" type="submit">Post Comment</button>
                              </form>    
@@ -133,48 +171,36 @@ $comments=$com->getCommentsByBlogId($B['id'])
                     <div class="blog_sidebar_widget">
                         <div class="widget_list widget_search">
                             <h3>Search</h3>
-                            <form action="#">
-                                <input placeholder="Search..." type="text">
+                            <form action="../public/index.php?page=searchblogsController" method="post">
+                                <input name="word" placeholder="Search..." type="text">
                                 <button type="submit">search</button>
                             </form>
                         </div>
                         <div class="widget_list widget_post">
                             <h3>Recent Posts</h3>
+                            <?php
+                            $blog=new Blogs(); 
+                            $blogs=$blog->GetLastThreeBlogs();
+                            foreach($blogs as $blog):?>
                             <div class="post_wrapper">
                                 <div class="post_thumb">
-                                    <a href="blog-details.html"><img src="assets/img/blog/blog1.jpg" alt=""></a>
+                                    <a href="../public/index.php?page=blog-details&id=<?=$blog['id']?>"><img src="<?= $blog["img"]?>" alt=""></a>
                                 </div>
                                 <div class="post_info">
-                                    <h3><a href="blog-details.html">Blog image post</a></h3>
-                                    <span>March 16, 2018 </span>
+                                    <h3><a href="../public/index.php?page=blog-details&id=<?=$blog['id']?>"><?= $blog['title']?></a></h3>
+                                    <span><?= $blog['created_at'] ?> </span>
                                 </div>
                             </div>
-                             <div class="post_wrapper">
-                                <div class="post_thumb">
-                                    <a href="blog-details.html"><img src="assets/img/blog/blog2.jpg" alt=""></a>
-                                </div>
-                                <div class="post_info">
-                                    <h3><a href="blog-details.html">Post with Gallery</a></h3>
-                                    <span>March 16, 2018 </span>
-                                </div>
-                            </div>
-                             <div class="post_wrapper">
-                                <div class="post_thumb">
-                                    <a href="blog-details.html"><img src="assets/img/blog/blog1.jpg" alt=""></a>
-                                </div>
-                                <div class="post_info">
-                                    <h3><a href="blog-details.html">Post with Audio</a></h3>
-                                    <span>March 16, 2018 </span>
-                                </div>
-                            </div>
-                        </div>
+                            <?php endforeach; ?>
+                             
+                             
                         <div class="widget_list widget_tag">
                             <h3>Tag products</h3>
                             <div class="tag_widget">
                                 <ul>
-                                    <li><a href="#">Drone</a></li>
-                                    <li><a href="#">Sky</a></li>
-                                    <li><a href="#">Fly</a></li>
+                                    <?php foreach($tags as $tag): ?>
+                                    <li><a href="#"><?= $tag['name']?></a></li>
+                                    <?php endforeach ?>
                                 </ul>
                             </div>
                         </div>

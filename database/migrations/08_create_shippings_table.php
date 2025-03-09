@@ -13,6 +13,8 @@ class CreateShippingsTable{
             FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
             address varchar(50) NOT NULL,
             city varchar(50) NOT NULL,
+            phone text not null,
+            note text ,
             country varchar(50) NOT NULL,
             status varchar(50) DEFAULT 'pending',
             created_at  TIMESTAMP  DEFAULT CURRENT_TIMESTAMP

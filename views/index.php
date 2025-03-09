@@ -1,4 +1,8 @@
+<?php
+use App\Blogs;
+use App\Product;
 
+?>
 
 
     <!--slider area start-->
@@ -77,63 +81,33 @@
                 </div>
             </div>
             <div class="row justify-content-center">
+            <?php
+                            $product=new Product(); 
+                            $products=$product->getLastThreeProducts();
+                            foreach($products as $product):
+                           ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding">
                         <a href="product-details.html">
                             <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-1.jpg" alt="">
+                                <img src="<?= $product['image']?>" alt="">
                             </div>
                             <div class="tranding-pro-title">
-                                <h3>Meyoji Robast Drone</h3>
+                                <h3><?= $product['name']?></h3>
                                 <h4>Drone</h4>
                             </div>
                             <div class="tranding-pro-price">
                                 <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
+                                    <span class="current_price">$<?= $product['price']?></span>
+                                    
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="single-tranding">
-                        <a href="product-details.html">
-                            <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-2.jpg" alt="">
-                            </div>
-                            <div class="tranding-pro-title">
-                                <h3>Ut praesentium earum</h3>
-                                <h4>Mevrik</h4>
-                            </div>
-                            <div class="tranding-pro-price">
-                                <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="single-tranding">
-                        <a href="product-details.html">
-                            <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-3.jpg" alt="">
-                            </div>
-                            <div class="tranding-pro-title">
-                                <h3>Consectetur adipisicing</h3>
-                                <h4>Flyer</h4>
-                            </div>
-                            <div class="tranding-pro-price">
-                                <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <?php endforeach; ?>
+                
+                
             </div>
         </div>
     </section><!--Tranding product-->
@@ -367,63 +341,33 @@
                 </div>
             </div>
             <div class="row justify-content-center">
+            <?php
+                            $product=new Product(); 
+                            $products=$product->getLastThreeProducts();
+                            foreach($products as $product):
+                           ?>
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                     <div class="single-tranding mb-30">
                         <a href="product-details.html">
                             <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-1.jpg" alt="">
+                                <img src="<?= $product['image']?>" alt="">
                             </div>
                             <div class="tranding-pro-title">
-                                <h3>Meyoji Robast Drone</h3>
-                                <h4>Drone</h4>
+                                <h3><?= $product['name']?></h3>
+                               
                             </div>
                             <div class="tranding-pro-price">
                                 <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
+                                    <span class="current_price"><?= $product['name']?></span>
+                                    
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="single-tranding mb-30">
-                        <a href="product-details.html">
-                            <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-2.jpg" alt="">
-                            </div>
-                            <div class="tranding-pro-title">
-                                <h3>Ut praesentium earum</h3>
-                                <h4>Mevrik</h4>
-                            </div>
-                            <div class="tranding-pro-price">
-                                <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                    <div class="single-tranding mb-30">
-                        <a href="product-details.html">
-                            <div class="tranding-pro-img">
-                                <img src="assets/img/product/tranding-3.jpg" alt="">
-                            </div>
-                            <div class="tranding-pro-title">
-                                <h3>Consectetur adipisicing</h3>
-                                <h4>Flyer</h4>
-                            </div>
-                            <div class="tranding-pro-price">
-                                <div class="price_box">
-                                    <span class="current_price">$70.00</span>
-                                    <span class="old_price">$80.00</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                <?php endforeach;?>
+                
+                
             </div>
         </div>
     </section><!--Other product-->
@@ -489,72 +433,37 @@
                 </div>
             </div>
             <div class="row blog_wrapper">
+                          <?php
+                            $blog=new Blogs(); 
+                            $blogs=$blog->GetLastThreeBlogs();
+                            foreach($blogs as $blog):
+                           ?>
+
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                     <article class="single_blog mb-60">
                         <figure>
                             <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog2.jpg" alt=""></a>
+                                <a href="../public/index.php?page=blog-details&id=<?=$blog['id']?>"><img src="<?= $blog["img"]?>" alt=""></a>
                             </div>
                             <figcaption class="blog_content">
-                                <h3><a href="blog-details.html">How to start drone</a></h3>
+                                <h3><a href="../public/index.php?page=blog-details&id=<?=$blog['id']?>l"><?= $blog['title']?></a></h3>
                                 <div class="blog_meta">                                        
                                     <span class="author">Posted by : <a href="#">Rahul</a> / </span>
-                                    <span class="post_date"><a href="#">Sep 20, 2019</a></span>
+                                    <span class="post_date"><a href="#"><?= $blog['created_at'] ?></a></span>
                                 </div>
                                 <div class="blog_desc">
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less</p>
+                                    <p><?=$blog['description']?></p>
                                 </div>
                                 <footer class="readmore_button">
-                                    <a href="blog-details.html">read more</a>
+                                    <a href="../public/index.php?page=blog-details&id=<?=$blog['id']?>">read more</a>
                                 </footer>
                             </figcaption>
                         </figure>
                     </article>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <article class="single_blog blog_bidio mb-60">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog1.jpg" alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <h3><a href="blog-details.html">See the tutorial</a></h3>
-                                <div class="blog_meta">                                        
-                                    <span class="author">Posted by : <a href="#">Rahul</a> / </span>
-                                    <span class="post_date">On : <a href="#">Aug 25, 2019</a></span>
-                                </div>
-                                <div class="blog_desc">
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less</p>
-                                </div>
-                                <footer class="readmore_button">
-                                    <a href="blog-details.html">read more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <article class="single_blog mb-60">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="assets/img/blog/blog-details.jpg" alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <h3><a href="blog-details.html">How to start drone</a></h3>
-                                <div class="blog_meta">                                        
-                                    <span class="author">Posted by : <a href="#">Rahul</a> / </span>
-                                    <span class="post_date"><a href="#">Sep 20, 2019</a></span>
-                                </div>
-                                <div class="blog_desc">
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less</p>
-                                </div>
-                                <footer class="readmore_button">
-                                    <a href="blog-details.html">read more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
+                <?php endforeach; ?>
+                
+                
             </div>
         </div>
     </section><!--/Blog-->

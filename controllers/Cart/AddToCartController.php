@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $product_id=$_POST['product_id'];
     $user_id=$_SESSION['id'];
-    $QTy=1;
+    $QTy=$_POST['qty'];
 
-
+// var_dump(123);
     $cart=new Cart();
     $cart->addToCart($user_id,$product_id,$QTy);
-    header("Location: " . $_SERVER['HTTP_REFERER']);
+    header("location: ../public/index.php");
     exit;
 
 

@@ -58,6 +58,12 @@ class Blogs{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function searchblogsByName($word) {
+        $sql = "SELECT * FROM blogs WHERE title LIKE ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute(['%' . $word . '%']);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
     
     
     public function DeleteBloge($blog_id){

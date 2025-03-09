@@ -74,8 +74,8 @@ $tags=$tag->GetAllTags();
                     <div class="blog_sidebar_widget">
                         <div class="widget_list widget_search">
                             <h3>Search</h3>
-                            <form action="#">
-                                <input placeholder="Search..." type="text">
+                            <form action="../public/index.php?page=searchblogsController" method="post">
+                                <input name="word" placeholder="Search..." type="text">
                                 <button type="submit">search</button>
                             </form>
                         </div>

@@ -31,7 +31,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $validat->validateRequired("address", $_POST['address']);
     $validat->validateRequired("city", $_POST['city']);
     $validat->validateRequired("phone", $_POST['phone']);
-    $validat->validateRequired("note", $_POST['note']);
 
     $errors = $validat->getErrors();
     if (!empty($errors)) {
