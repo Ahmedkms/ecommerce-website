@@ -1,4 +1,5 @@
 <?php
+
 use App\Cart;
 
 $cart = new Cart();
@@ -37,7 +38,7 @@ $total = 0;
                                         <th class="product_thumb">Image</th>
                                         <th class="product_name">Product</th>
                                         <th class="product-price">Price</th>
-                                        <th class="product_quantity">Quantity</th>  
+                                        <th class="product_quantity">Quantity</th>
                                         <th class="product_total">Total</th>
                                         <th class="product_remove">Remove</th>
                                     </tr>
@@ -45,40 +46,41 @@ $total = 0;
                                 <tbody>
                                     <?php foreach ($products as $product):
                                         $total = $product['QTY'] * $product['product_price']; ?>
-                                        <tr>
-                                            <td class="product_thumb">
-                                                <a href="#"><img
-                                                        src="<?= htmlspecialchars($product['product_image'], ENT_QUOTES) ?>"
-                                                        alt=""></a>
-                                            </td>
-                                            <td class="product_name">
-                                                <a
-                                                    href="#"><?= htmlspecialchars($product['product_name'], ENT_QUOTES) ?></a>
-                                            </td>
-                                            <td class="product-price"><?= $product['product_price'] ?></td>
+                                        <form action="#" method="POST">
+                                            <tr>
+                                                <td class="product_thumb">
+                                                    <a href="#"><img
+                                                            src="<?= htmlspecialchars($product['product_image'], ENT_QUOTES) ?>"
+                                                            alt=""></a>
+                                                </td>
+                                                <td class="product_name">
+                                                    <a
+                                                        href="#"><?= htmlspecialchars($product['product_name'], ENT_QUOTES) ?></a>
+                                                </td>
+                                                <td class="product-price"><?= $product['product_price'] ?></td>
+                                                <td class="product_quantity">
 
-                                            <td class="product_quantity">
-                                                <form action="../public/index.php?page=UpdateCartController" method="post">
                                                     <label>Quantity</label>
+                                                    <input type="hidden">
                                                     <input name="qty" min="1" max="100" value="<?= $product['QTY'] ?>"
                                                         type="number">
                                                     <input type="hidden" name="cart_id"
-                                                        value="<?=$product['cart_id'] ?>">
-                                                        <div class="cart_submit">
-                                                    <button type="submit">Update Cart</button>
-                                                    </div>  
-                                                </form>
-                                            </td>
+                                                        value="<?= $product['cart_id'] ?>">
+                                                    <div class="cart_submit">
+                                                        <button type="submit">Update quantity</button>
+                                                    </div>
+                                                </td>
 
-                                            <td class="product_total"><?= $total ?></td>
+                                                <td class="product_total"><?= $total ?></td>
 
-                                            <td class="product_remove">
-                                                <a
-                                                    href="../public/index.php?page=RemoveFromCarController&cart_id=<?= htmlspecialchars($product['cart_id'], ENT_QUOTES) ?>">
-                                                    <i class="ion-android-close"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                <td class="product_remove">
+                                                    <a
+                                                        href="../public/index.php?page=RemoveFromCarController&cart_id=<?= htmlspecialchars($product['cart_id'], ENT_QUOTES) ?>">
+                                                        <i class="ion-android-close"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </form>
                                     <?php endforeach; ?>
 
 
