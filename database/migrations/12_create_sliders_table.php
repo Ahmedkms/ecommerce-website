@@ -1,5 +1,5 @@
 <?php 
-class CreateSliderTable{
+class CreateSlidersTable{
     public function up($conn)
     {
         $sql = "CREATE TABLE IF NOT EXISTS sliders (

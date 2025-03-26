@@ -41,7 +41,12 @@ class User{
             ':email'=>$this->email,
             ':role'=>$this->role,
             ':password'=>$this->password
-        ]);} catch (PDOException $e) {
+        ]);
+        $_SESSION['username']=$this->name;
+        $_SESSION['email']=$this->email;
+        $_SESSION['role']=$this->role;
+        $_SESSION['id']=$this->getuser($this->email)['id'];
+    } catch (PDOException $e) {
             die("error: " . $e->getMessage());
         }
     }
@@ -67,6 +72,7 @@ class User{
             if ($res&&password_verify($password,$res["password"])){
                  $_SESSION['username']=$res['name'];
                  $_SESSION['role']=$res['role'];
+                 $_SESSION['email']=$res['email'];
                  $_SESSION['id']=$res['id'];
                 return true;
             }

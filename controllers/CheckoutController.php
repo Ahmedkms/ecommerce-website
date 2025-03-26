@@ -50,6 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         }
         $shiping = new Shiping();
         $shiping->CreateShiping($_SESSION['id'], $order_id , $_POST['address'], $_POST['city'], $_POST['country'], $_POST['phone'], $_POST['note']);
+        $cart->clearCart($_SESSION['id']);
+            
         header("location: ../public/index.php");
         exit;
     }

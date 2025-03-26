@@ -1,22 +1,23 @@
 <?php
-use App\Comment;
+use App\Reviews;
 use App\user;
 use App\Validator;
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
     $validat = new Validator();
     $validat->validateEmail('email', $_POST['email']);
     $validat->validateRequired("email", $_POST['email']);
-    $validat->validateRequired("comment", $_POST['comment']);
+    $validat->validateRequired("review", $_POST['review']);
     $validat->validateRequired('name', $_POST['name']);
-    $validat->validateRequired('blog_id', $_POST['blog_id']);
-    $user=new user();
-    $u=$user->getuser($_POST['email']);
+    $validat->validateRequired('product_id', $_POST['product_id']);
 
-// var_dumpasdas($u);
+
+    // var_dump($_POST);
+
     if (empty($validat->getErrors())){
-        // var_dump(123);
-        $c=new Comment();
-       ( $c->CreateComment($_POST['blog_id'],$u['id'],$_POST['comment']));
+        var_dump($_POST['product_id']);
+        $r=new Reviews();
+        var_dump($r->CreateReview($_POST['product_id'],$_POST['name'],$_POST['review']));
         header("location:" . $_SERVER['HTTP_REFERER']);
         exit;
     }else{
@@ -26,23 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         exit;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
+   
 
 
 
 
 }
-
-
 

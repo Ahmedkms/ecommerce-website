@@ -1,5 +1,4 @@
 <?php
-
 use App\Cart;
 
 $cart = new Cart();
@@ -27,7 +26,7 @@ $total = 0;
 <!--shopping cart area start -->
 <div class="shopping_cart_area mt-60">
     <div class="container">
-        <form action="">
+        <form action="../public/index.php?page=UpdateCartController" method="post">
             <div class="row">
                 <div class="col-12">
                     <div class="table_desc">
@@ -40,14 +39,15 @@ $total = 0;
                                         <th class="product-price">Price</th>
                                         <th class="product_quantity">Quantity</th>
                                         <th class="product_total">Total</th>
+                                        <th class="product_remove">Update</th>
                                         <th class="product_remove">Remove</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($products as $product):
                                         $total = $product['QTY'] * $product['product_price']; ?>
-                                        <form action="#" method="POST">
-                                            <tr>
+                                        <tr>
+                                            <form action="../public/index.php?page=UpdateCartController" method="post">
                                                 <td class="product_thumb">
                                                     <a href="#"><img
                                                             src="<?= htmlspecialchars($product['product_image'], ENT_QUOTES) ?>"
@@ -58,20 +58,26 @@ $total = 0;
                                                         href="#"><?= htmlspecialchars($product['product_name'], ENT_QUOTES) ?></a>
                                                 </td>
                                                 <td class="product-price"><?= $product['product_price'] ?></td>
+
                                                 <td class="product_quantity">
 
                                                     <label>Quantity</label>
-                                                    <input type="hidden">
                                                     <input name="qty" min="1" max="100" value="<?= $product['QTY'] ?>"
                                                         type="number">
-                                                    <input type="hidden" name="cart_id"
-                                                        value="<?= $product['cart_id'] ?>">
+                                                    <input type="hidden" name="cart_id" value="<?= $product['cart_id'] ?>">
                                                     <div class="cart_submit">
-                                                        <button type="submit">Update quantity</button>
+
                                                     </div>
+
                                                 </td>
 
                                                 <td class="product_total"><?= $total ?></td>
+                                                <td>
+                                                    <div class="cart_submit">
+                                                        <button type="submit">Update Cart</button>
+                                                    </div>
+
+                                                </td>
 
                                                 <td class="product_remove">
                                                     <a
@@ -79,8 +85,8 @@ $total = 0;
                                                         <i class="ion-android-close"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
-                                        </form>
+                                            </form>
+                                        </tr>
                                     <?php endforeach; ?>
 
 

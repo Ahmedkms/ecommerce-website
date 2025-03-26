@@ -130,7 +130,7 @@
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
-                                    <a href="../routes/web.php?page=product">product</a>
+                                    <a href="../routes/web.php?page=product">products</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">pages </a>
@@ -302,7 +302,7 @@
                                 <nav>
                                     <ul>
                                         <li><a href="../public/index.php?page=index-2">home</a></li>
-                                        <li><a href="../public/index.php?page=product">Product</a></li>
+                                        <li><a href="../public/index.php?page=product">Products</a></li>
 
                                         <li><a class="active" href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
@@ -325,7 +325,7 @@
                                                     class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 <li><a href="../public/index.php?page=blog">blog</a></li>
-                                                <li><a href="../public/index.php?page=blog-details">blog details</a></li>
+                                                <!-- <li><a href="../public/index.php?page=blog-details">blog details</a></li> -->
                                             </ul>
                                         </li>
                                         <?php if(isset($_SESSION['username'])) :?>

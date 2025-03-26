@@ -44,7 +44,7 @@
                                             <div class="col-lg-6">
                                                 <div class="single-acc-field">
                                                     <label for="email">Email</label>
-                                                    <input type="email" name="email" placeholder="Email" id="email">
+                                                    <input type="email" name="email" value="<?= $_SESSION['email']?>" disabled placeholder="Email" id="email">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">

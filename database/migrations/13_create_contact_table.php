@@ -8,7 +8,7 @@ class CreateContactTable{
             name VARCHAR(50) NOT NULL,
             email VARCHAR(255)  NOT NULL,
             message TEXT NOT NULL,
-            user_id INT NOT NULL,
+            user_id INT ,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,          
             created_at  TIMESTAMP  DEFAULT CURRENT_TIMESTAMP
         

@@ -1,13 +1,16 @@
 <?php
 require_once "../vendor/autoload.php";
 $page = isset($_GET['page']) ? $_GET['page'] : "home";
-
+// var_dump($page);
 
 switch ($page) {
     case "home":
         require_once "../views/index.php";
         break;
     case "product":
+        require_once "../views/product.php";
+        break;
+    case "product_details":
         require_once "../views/product-details.php";
         break;
     case "404":
@@ -62,15 +65,15 @@ switch ($page) {
         require_once "../views/wishlist.php";
         break;
     case "LogInController":
-        require_once "../controllers/LogInController.php";
+        require_once "../controllers/auth/LogInController.php";
         break;
 
     case "registerController":
-        require_once "../controllers/registerController.php";
+        require_once "../controllers/auth/registerController.php";
         break;
 
     case "resetPasswordController":
-        require_once "../controllers/resetPasswordController.php";
+        require_once "../controllers/auth/resetPasswordController.php";
         break;
     case "add-category":
         require_once "../controllers/admin/addCategoryController.php";
@@ -91,7 +94,7 @@ switch ($page) {
         require_once "../controllers/Cart/UpdateCartController.php";
         break;
     case "log_out":
-        require_once "../controllers/logoutController.php";
+        require_once "../controllers/auth/logoutController.php";
         break;
     case "checkoutcontroller":
         require_once "../controllers/CheckoutController.php";
@@ -108,6 +111,9 @@ switch ($page) {
         break;
     case "searchblogsController":
         require_once "../controllers/searchblogcontroller.php";
+        break;
+    case "addreview":
+        require_once "../controllers/AddReiewController.php";
         break;
 
 
